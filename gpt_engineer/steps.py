@@ -227,9 +227,6 @@ class Config(str, Enum):
 STEPS = {
     Config.DEFAULT: [
         clarify,
-        gen_clarified_code,
-        gen_entrypoint,
-        execute_entrypoint,
     ],
     Config.BENCHMARK: [simple_gen, gen_entrypoint],
     Config.SIMPLE: [simple_gen, gen_entrypoint, execute_entrypoint],

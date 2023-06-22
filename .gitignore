@@ -15,7 +15,8 @@ build/
 .env
 .env.sh
 venv/
-ENV/
+env/
+envs/
 
 # IDE-specific files
 .vscode/
@@ -40,6 +41,7 @@ Thumbs.db
 
 # this application's specific files
 archive
+notes.md
 
 # any log file
 *log.txt

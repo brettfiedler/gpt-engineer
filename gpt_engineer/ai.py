@@ -1,19 +1,23 @@
 from __future__ import annotations
 
 import logging
-
 import openai
+import os
+from dotenv import load_dotenv, find_dotenv
 
 logger = logging.getLogger(__name__)
 
+load_dotenv(find_dotenv('.env'))
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 class AI:
-    def __init__(self, model="gpt-4", temperature=0.1):
+    def __init__(self, model="gpt-3.5-turbo", temperature=0.1):
         self.temperature = temperature
 
         try:
             openai.Model.retrieve(model)
             self.model = model
+
         except openai.InvalidRequestError:
             print(
                 f"Model {model} not available for provided API key. Reverting "
