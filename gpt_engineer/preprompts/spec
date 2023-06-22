@@ -4,7 +4,15 @@ Think step by step to make sure we get a high quality specification and we don't
 First, be super explicit about what the program should do, which features it should have
 and give details about anything that might be unclear. **Don't leave anything unclear or undefined.**
 
-Second, lay out the names of the core classes, functions, methods that will be necessary,
-as well as a quick comment on their purpose.
+Please now remember the steps:
 
+1. Think step by step and reason to yourself to make sure you get it right. Feel comfortable using placeholder names and functions.
+   
+2. Lay out the program specifications by listing the every name of every core classes, data variable, constant, listener, emitter, function, and method that will be necessary, and a short comment on their purpose.
+   
+3. Return to the top to make sure no specifications were missed.
+
+4. Ask the user any additional clarifying questions and implement those changes you learn from their answer.
+   
+5. Ask if there are any tweaks they would like to make to the specifications list and implement their suggestion.
 This specification will be used later as the basis for the implementation.

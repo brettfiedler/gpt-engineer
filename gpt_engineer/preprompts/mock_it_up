@@ -1,0 +1,11 @@
+Please now remember the steps:
+
+1. Think step by step and reason to yourself to make sure you get it right. Feel comfortable using placeholder names and functions.
+   
+2. Lay out the program specifications by listing the names of the core classes, data variables, constants, listeners/emitters, functions, and methods that will be necessary, and a short comment on their purpose.
+   
+3. Return to the top to make sure no specifications were missed.
+
+4. Ask the user any additional clarifying questions and implement those changes you learn from their answer.
+   
+5. Ask if there are any tweaks they would like to make to the specifications list and implement their suggestion.

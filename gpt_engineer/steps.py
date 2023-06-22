@@ -59,6 +59,48 @@ def clarify(ai: AI, dbs: DBs):
     print()
     return messages
 
+def design(ai: AI, dbs: DBs):
+    """
+    Chat with user to create program components
+    """
+    messages = [ai.fsystem(dbs.preprompts["design"])]
+    user = dbs.input["main_prompt"]
+    while True:
+        messages = ai.next(messages, user)
+
+        if messages[-1]["content"].strip().lower().startswith("no"):
+            break
+
+        print()
+        user = input('>>> Answer Question 1 using text, or simply type "s" to Skip to code generation: ')
+        print()
+
+        if not user or user == "s":
+            break
+
+        user += (
+            "\n\n"
+            "Is anything else unclear? If yes, only answer in the form:\n"
+            "{remaining unclear areas} remaining questions.\n"
+            "{Next question}\n"
+            'If everything is sufficiently clear, only answer "no".'
+        )
+
+    print()
+    return messages
+
+def mock_it_up(ai: AI, dbs: DBs):
+    """
+    Generate a spec from the main prompt + clarifications and save the results to
+    the workspace
+    """
+    messages = json.loads(dbs.logs[clarify.__name__])
+
+    messages = ai.next(messages, dbs.preprompts["spec"])
+
+    dbs.memory["specification"] = messages[-1]["content"]
+
+    return messages
 
 def gen_spec(ai: AI, dbs: DBs):
     """
@@ -219,6 +261,7 @@ def fix_code(ai: AI, dbs: DBs):
 
 class Config(str, Enum):
     DEFAULT = "default"
+    PAPER = "paper"
     BENCHMARK = "benchmark"
     SIMPLE = "simple"
     TDD = "tdd"
@@ -230,12 +273,17 @@ class Config(str, Enum):
 
 
 # Different configs of what steps to run
+# TODO: added PAPER config. Add more steps here.
 STEPS = {
     Config.DEFAULT: [
         clarify,
         gen_clarified_code,
         gen_entrypoint,
         execute_entrypoint,
+    ],
+    Config.PAPER: [
+        design,
+        mock_it_up,
     ],
     Config.BENCHMARK: [simple_gen, gen_entrypoint],
     Config.SIMPLE: [simple_gen, gen_entrypoint, execute_entrypoint],

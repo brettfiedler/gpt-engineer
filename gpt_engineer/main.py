@@ -23,7 +23,7 @@ def main(
     steps_config: steps.Config = typer.Option(
         steps.Config.DEFAULT, "--steps", "-s", help="decide which steps to run"
     ),
-    verbose: bool = typer.Option(False, "--verbose", "-v"),
+    verbose: bool = typer.Option(True, "--quiet", "-q"), #TODO: setting debug to true for now. reversed functionality.
     run_prefix: str = typer.Option(
         "",
         help=(
